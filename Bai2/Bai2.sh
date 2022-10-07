@@ -20,7 +20,7 @@ while echo
   while [ $i -lt $index ]
     do
       price[i]=`curl -XGET 'https://api.coingecko.com/api/v3/simple/price?ids='${coin[i]}'&vs_currencies=usd'|grep -oE "[^:]+$" | sed 's/\./a/' | sed 's/}}/z/'`
-      price[i]=`echo ${price[i]%%a*z}`
+      price[i]=`echo ${price[i]%%a*z} | sed 's/z//'`
       i=`expr $i + 1`
     done
   i=0
